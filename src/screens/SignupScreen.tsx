@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Icon } from '@rneui/themed';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function LoginField(){
     return(
@@ -55,17 +56,21 @@ function LoginField(){
   }
   function SigninButton(){
     return(
-  <View style={{ flexDirection:"row",marginTop:20}}>
+  
+    <View style={{ flexDirection:"row",marginTop:20}}>
     <View style={{height:70,flex:1,justifyContent:'center'}}>
       <Text style={{fontSize:25,color:'#fff',marginLeft:40,fontWeight:'500'}}>Sign In</Text>
     </View>
+
     <View style={{height:70,flex:1,justifyContent:'center',}}>
       <View style={{ width:50,height:50,backgroundColor:'white',borderRadius:100,justifyContent:'center',alignItems:'center'}}> 
       <Icon name={'arrow-forward'} type='ionicon'/>
       </View>
+    
     </View>
   
   </View>
+ 
     );
   }
 const SignupScreen = () => {

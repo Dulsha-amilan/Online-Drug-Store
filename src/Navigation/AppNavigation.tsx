@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
+import Homepage from '../screens/Homepage';
 const Stack = createStackNavigator();
 const AppNavigation = () => {
   return (
@@ -15,6 +16,7 @@ const AppNavigation = () => {
       <Stack.Screen name="SignUp" component={SignupScreen} options={{
         cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS
       }} />
+      <Stack.Screen name="Home" component={Homepage}/>
    
     </Stack.Navigator>
   </NavigationContainer>
