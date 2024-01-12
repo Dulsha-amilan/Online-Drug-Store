@@ -6,6 +6,8 @@ import { TouchableOpacity } from 'react-native';
 
 function LoginField(p:any){
   const stack =p.stack;
+  const [email,setEmail]=React.useState('');
+  const [password,setPassword]=React.useState('');
     return(
       <View style={{ marginTop:200}}>
         <View style={{
@@ -43,22 +45,37 @@ function LoginField(p:any){
   }
   function SigninButton(p:any){
     const stack=p.stack;
+    const u_mail=p.u_email;
+    const u_password=p.u_password;
+
+    const email='abc@gmail.com';
+    const password='123';
+
     function gotoSignup(){
       stack.navigate('SignUp')
 
     }
+    function gotoHome(){
+      if(u_mail==email && u_password==password){
+        
+      }
+          p.stack.navigate('Home')
+    }
     return(
   <View style={{ flexDirection:"row",marginTop:20}}>
-    <TouchableOpacity onPress={gotoSignup}>
+   <TouchableOpacity onPress={gotoSignup}>
       <View style={{height:70,flex:1,justifyContent:'center'}}>
       <Text style={{fontSize:25,color:'#fff',marginLeft:40,fontWeight:'500'}}>Sign Up</Text>
     </View>
     </TouchableOpacity>
+    <TouchableOpacity onPress={gotoHome}>
     <View style={{height:70,flex:1,justifyContent:'center',}}>
-      <View style={{ width:50,height:50,backgroundColor:'white',borderRadius:100,justifyContent:'center',alignItems:'center',marginLeft:100}}> 
+      <View style={{ width:50,height:50,backgroundColor:'white',borderRadius:100,justifyContent:'center',alignItems:'center',marginLeft:50}}> 
       <Icon name={'arrow-forward'} type='ionicon'/>
       </View>
     </View>
+    </TouchableOpacity>
+   
   
   </View>
     );
