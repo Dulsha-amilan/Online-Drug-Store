@@ -4,6 +4,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Icon } from '@rneui/themed';
 import { TouchableOpacity } from 'react-native';
 import { useTransitionProgress } from 'react-native-screens';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../firebase/firebaceInit';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+
 
 function LoginField(p:any){
   const stack =p.stack;
@@ -65,12 +69,35 @@ function LoginField(p:any){
   
     const email='abc@gmail.com';
     const password='123';
+    function getUser() {
+      const usersCollection = collection(db, 'Users');
+  
+      getDocs(query(usersCollection, where('email', '==', u_mail)))
+        .then((ds) => {
+          if (ds.size === 1) {
+            const dt = ds.docs[0].data();
+            Alert.alert(dt.password);
+            if (dt.password === u_password) {
+              p.stack.navigate('Home');
+            } else {
+              Alert.alert('Wrong Password');
+              console.log('Wrong Password');
+            }
+          }
+        })
+        .catch((error) => {
+          console.error('Error getting user:', error);
+        });
+    }
+    
+    
   
     function gotoSignup(){
       stack.navigate('SignUp')
     }
   
     function gotoHome(){
+        getUser();
       if(u_mail===email && u_password===password){  // Use strict equality (===) for comparison
         p.stack.navigate('Home')
       } else {
@@ -133,3 +160,7 @@ const sty=StyleSheet.create({
 export default LoginScreen
 
 const styles = StyleSheet.create({})
+
+function then(arg0: (ds: any) => void) {
+  throw new Error('Function not implemented.');
+}
