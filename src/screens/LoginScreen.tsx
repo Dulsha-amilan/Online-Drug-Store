@@ -1,5 +1,5 @@
 import { Alert, Image, StyleSheet, Text, TextInput, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Icon } from '@rneui/themed';
 import { TouchableOpacity } from 'react-native';
@@ -7,6 +7,7 @@ import { useTransitionProgress } from 'react-native-screens';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db} from '../../firebase/firebaceInit';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import { ActivityIndicator } from 'react-native-paper';
 
 
 function LoginField(p:any){
@@ -23,7 +24,7 @@ function LoginField(p:any){
   
         }}>
           <TextInput placeholder='Your Email'
-          placeholderTextColor={"#000"}
+          placeholderTextColor={"#aaa"}
           onChangeText={(email)=>setEmail(email)}
           style={{
             fontSize:18,
@@ -45,7 +46,7 @@ function LoginField(p:any){
         }}>
           <TextInput placeholder='Password'
           secureTextEntry={true}
-          placeholderTextColor={"#000"}
+          placeholderTextColor={"#aaa"}
           onChangeText={(password)=>setPassword(password)}
           style={{
             fontSize:18,
@@ -67,7 +68,7 @@ function LoginField(p:any){
     const u_mail=p.u_mail;  // Fix typo here: change u_email to u_mail
     const u_password=p.u_password;
   
-    
+    const[isLogging,setIsLogging]=useState(false)
     function getUser() {
      
   
@@ -75,9 +76,10 @@ function LoginField(p:any){
         query(
           collection(db, 'Users')
           , where('email', '==', u_mail.toLowerCase()))).then(ds => {
+            setIsLogging(false);
           if (ds.size == 1) {
             const dt = ds.docs[0].data();
-            Alert.alert(dt.password);
+            // Alert.alert(dt.password);
             if (dt.password==u_password){
               p.stack.navigate('Home');
             }else{
@@ -89,6 +91,7 @@ function LoginField(p:any){
           }
         })
         .catch((error) => {
+          setIsLogging(false);
           console.error('Error getting user:', error);
         });
     }
@@ -100,6 +103,7 @@ function LoginField(p:any){
     }
   
     function gotoHome(){
+      setIsLogging(true);
         getUser();
       
     }
@@ -114,7 +118,14 @@ function LoginField(p:any){
         <TouchableOpacity onPress={gotoHome}>
           <View style={{height:70,flex:1,justifyContent:'center',}}>
             <View style={{ width:50,height:50,backgroundColor:'#1A998E',borderRadius:100,justifyContent:'center',alignItems:'center',marginLeft:50}}> 
-              <Icon name={'arrow-forward'} type='ionicon'/>
+             
+              {
+                (isLogging) ?   <ActivityIndicator color='white'/>
+                :
+                <Icon name={'arrow-forward'} type='ionicon'/>
+              }
+               {/* <Icon name={'arrow-forward'} type='ionicon'/> */}
+            
             </View>
           </View>
         </TouchableOpacity>
