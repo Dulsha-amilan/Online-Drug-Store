@@ -3,14 +3,15 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore } from "firebase/firestore";
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDDQ7iTPiBRuQYrlCY6xQQWUXuy2aHNa7E",
-  authDomain: "pizzashop-a3b61.firebaseapp.com",
-  projectId: "pizzashop-a3b61",
-  storageBucket: "pizzashop-a3b61.appspot.com",
-  messagingSenderId: "154849594656",
-  appId: "1:154849594656:web:f78e4bd47011a2c6565b45"
+  apiKey: "AIzaSyCbvxXmSVDuM_YtyN-NU7E2mEuo0-NXemY",
+  authDomain: "test-acb86.firebaseapp.com",
+  projectId: "test-acb86",
+  storageBucket: "test-acb86.appspot.com",
+  messagingSenderId: "656206972719",
+  appId: "1:656206972719:web:90b197b483989e848503da"
 };
 
 // Initialize Firebase

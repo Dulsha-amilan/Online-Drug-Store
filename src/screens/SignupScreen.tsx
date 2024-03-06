@@ -8,7 +8,7 @@ function LoginField(){
     return(
       <View style={{ marginTop:200}}>
         <View style={{
-          backgroundColor:'white',
+          backgroundColor:'#1A998E',
           borderRadius:20,height:70,
           marginHorizontal:30,justifyContent:'center',
           paddingLeft:20,
@@ -23,7 +23,7 @@ function LoginField(){
         </View>
         <View style={{
           marginTop:10,
-          backgroundColor:'white',
+          backgroundColor:'#1A998E',
           borderRadius:20,height:70,
           marginHorizontal:30,justifyContent:'center',
           paddingLeft:20,
@@ -37,7 +37,7 @@ function LoginField(){
         </View>
         <View style={{
           marginTop:10,
-          backgroundColor:'white',
+          backgroundColor:'#1A998E',
           borderRadius:20,height:70,
           marginHorizontal:30,justifyContent:'center',
           paddingLeft:20,
@@ -59,11 +59,11 @@ function LoginField(){
   
     <View style={{ flexDirection:"row",marginTop:20}}>
     <View style={{height:70,flex:1,justifyContent:'center'}}>
-      <Text style={{fontSize:25,color:'#fff',marginLeft:40,fontWeight:'500'}}>Sign In</Text>
+      <Text style={{fontSize:25,color:'#1A998E',marginLeft:40,fontWeight:'500'}}>Sign In</Text>
     </View>
 
     <View style={{height:70,flex:1,justifyContent:'center',}}>
-      <View style={{ width:50,height:50,backgroundColor:'white',borderRadius:100,justifyContent:'center',alignItems:'center'}}> 
+      <View style={{ width:50,height:50,backgroundColor:'#1A998E',borderRadius:100,justifyContent:'center',alignItems:'center'}}> 
       <Icon name={'arrow-forward'} type='ionicon'/>
       </View>
     
@@ -82,7 +82,7 @@ const SignupScreen = () => {
       width:'100%',height:'100%', 
       position:'absolute'
     }} source={
-      require('../../assets/img/1.png')
+      require('../../assets/img/Untitled.png')
     }resizeMode='cover'/>
     <Text style={
       {
