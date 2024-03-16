@@ -70,31 +70,34 @@ function LoginField(p:any){
   
     const[isLogging,setIsLogging]=useState(false)
     function getUser() {
-     
-  
       getDocs(
-        query(
-          collection(db, 'Users')
-          , where('email', '==', u_mail.toLowerCase()))).then(ds => {
-            setIsLogging(false);
-          if (ds.size == 1) {
-            const dt = ds.docs[0].data();
-            // Alert.alert(dt.password);
-            if (dt.password==u_password){
-              p.stack.navigate('Home');
-            }else{
-              Alert.alert('Message',"incorrect Email or Password");
-            }
-           
-          }else{
-            Alert.alert('Massege','Cant find User');
+          query(
+              collection(db, 'Users'),
+              where('email', '==', u_mail.toLowerCase())
+          )
+      ).then(ds => {
+          setIsLogging(false);
+          if (ds.size === 1) {
+              const dt = ds.docs[0].data();
+              if (dt.password === u_password) {
+                  if (u_mail.toLowerCase() === 'admin@gmail.com' && u_password === 'admin') {
+                      // Admin login successful
+                      p.stack.navigate('AdminHome');
+                  } else {
+                      // Normal user login successful
+                      p.stack.navigate('Home');
+                  }
+              } else {
+                  Alert.alert('Message', 'Incorrect Email or Password');
+              }
+          } else {
+              Alert.alert('Message', 'Can\'t find User');
           }
-        })
-        .catch((error) => {
+      }).catch((error) => {
           setIsLogging(false);
           console.error('Error getting user:', error);
-        });
-    }
+      });
+  }
     
     
   
